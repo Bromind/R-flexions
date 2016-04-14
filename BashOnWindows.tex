@@ -1,0 +1,26 @@
+\documentclass{article}
+
+
+\title{{\huge Bash on Windows}\\ The declared failure of Powershell}
+\author{Martin \textsc{Vassor}}
+
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+What a surprise to learn that Microsoft decided to integrate bash on its operating system. What a surprise indeed... After all the noise I heard about Powershell, that tool promised to such a great future. Powershell, not only a CLI, but much more: a fool automation framework, now implicitly disclaimed by the announcement of bash integration, bash, the very opposite of Microsoft way of thinking, till now.
+
+\section{The failure of Powershell}
+I am already hearing Microsoft fanboys saying that the integration of Bash won't remove Powershell. Indeed it won't, Microsoft will continue to push it in every version of Windows, where it will remain with all the legacy software which form Windows. Why will people prefer Bash over Powershell ? Why has Microsoft been forced to integrate Bash ? Because of an old principle which rules the computer sciences world since its beginning : "\texttt{K.I.S.S.}" : keep it simple, stupid. The fact is that Powershell is too complex. Why would one use it when a simple shell script would do the same work ?
+
+Yes, Bash is not perfect, it is full of little tricks one have to learn (Who has never been tricked by the difference between ", ' and \` ?). But it is foundamentally simple : all variables are text, they are global, etc... This simplicity makes Bash useless for a big projects, but it is not aimed at that. Bash is concrete you use to assemble bricks, which do the hard stuff. And that makes the strength of Bash, you don't need a whole level of object-oriented program or whatever, just some text that you can parse and work with.
+
+And Powershell is the exact opposite, as is Microsoft. Just take a look at the length of the commands (or cmdlets as they are called) : their name are so long that they have native aliases. The same for the object-orientation. Yes, the object paradigm is quite powerful, but it is not practical, and completely useless for automation. Automation means assembling easy and repetitive tasks into a single one. Reaching a degree of complexity such that oriented programming would ease the automation have to be a corner case. Then either the power of Powershell is useless, either automation on Windows is to complex.
+
+So why did Microsoft chose to integrate Bash ? As it is said on their own blog post : users have asked for it. Users being tired of the usual complexity of that system. Why did it took that much time to take the decision ? First, Microsoft had to get rid of Ballmer\footnote{By the way, I wonder the face he did when he learned that Microsoft allege the "viral" and "communist" free software.}. But even more, it is a complete u-turn in the way of thinking of Microsoft. Since the begining, Microsoft implicitly claimed its independance. Even when Apple based its OS on a POSIX base, google building its own based on Linux. Microsoft is to face the facts : the community and the software made for POSIX is just better. It is better tought, better designed, better programmed. The \texttt{K.I.S.S.} principle, which one can see as a particular instance of the least-effort principle is starting to eliminate the most complexes solutions.
+
+\section{Expectations}
+Well, what is to be expected from that ? In my opinion, it seems that Microsoft changed its mind on free software. I don't when it did, but they switched from rejecting both the software and the mentality to admiration. That is, Microsoft will integrate more and more free software. One could even dream a future in which Windows will be POSIX as Apple is, or even turn to the Free software model, so that one wouldn't have to pay to have software, so that one could really control its computer and not the reverse.
+
+\end{document}
