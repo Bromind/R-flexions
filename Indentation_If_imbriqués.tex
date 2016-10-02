@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{todonotes}
+\usepackage{framed}
+
+\author{Martin Vassor}
+\title{De l'indentation correcte des blocs \emph{If...else}}
+
+
+\begin{document}
+\maketitle
+\abstract{Alors que l'indentation est une aide aujourd'hui indispensable pour comprendre la sémantique d'un programme, le fait qu'elle soit optionnelle (dans la plupart des languages) a induit en erreur des groupes entiers. À tel qu'on peut aujourd'hui lire du code ou l'indentation erronnée induit le lecteur en erreur. Un exemple des plus frappants est la mauvaise habitude partagée par la majorité de la communauté de l'indentation de blocs \emph{if...else if ... else}. Voyons pourquoi le style qui veut mettre les trois élements au même niveau est faux et contraire à la sémantique binaire des \emph{if}.}
+
+
+\section{Introduction}
+Le but de l'indentation est de faciliter la lecture du code. Ainsi, un ensemble de lignes constituant un bloc d'execution linéaire sont alignées, et lorsque le flot d'execution est modifié, on augmente le décalage. Ainsi, par exemple une boucle \emph{for} a l'indentation suivante : 
+
+\begin{figure}
+\begin{framed}
+\begin{verbatim}
+1: For <statement> to <end condition> do
+2:     <loop statement>
+3: <Next statement>
+\end{verbatim}
+\end{framed}
+\caption{Indentation des \emph{for}}
+\end{figure}
+
+Ainsi, la syntaxe utilisée va dans le sens de la sémantique, à savoir que le bloc \emph{loop statement} constitue le corps de la boucle. L'indentation utilisée indique que les trois lignes constituent un bloc d'execution linéaire, dont le flot concernant la ligne centrale est modifié. De même, la ligne 2 constitue un bloc d'execution linéaire, et toutes les lignes constituant le bloc sont indentées par rapport aux lignes 1 et 3.
+
+\section{Le cas du \emph{if...else}}
+\subsection{Cas général}
+Pour le \emph{if...else}, les styles utilisés proposent en général quelque chose similaire à l'exemple en Figure~\ref{fig:if}.
+\begin{figure}
+\begin{framed}
+\begin{verbatim}
+1: if <condition>
+2:     <conditionnal statement>
+3: else
+4:     <conditionnal statement>
+5: <unconditionnal statement>
+\end{verbatim}
+\end{framed}
+\caption{Indentation des \emph{if...else}}
+\label{fig:if}
+\end{figure}
+Et cette syntaxe va dans le sens que l'on veut, chaque niveau d'indentation représente un bloc linéaire.
+
+\subsection{Élision des accolades}
+On assiste à trois écoles concernant l'indentation des accolades. En effet, certains langages de programmation (dont les plus classiques comme le C) délimitent un unique statement un bloc encadré d'accolades. Cette syntaxe permet d'éxecuter plusieurs instructions dans un seul statement. Les trois placements les plus courant pour les accolades dans un bloc sont indiqués dans les figures \ref{fig:if1}, \ref{fig:if2} et \ref{fig:if3}. La syntaxe utilisée en \ref{fig:if1} s'explique un accord strict de la sémantique du C et de notre sémantique d'indentation. On observe la syntaxe \ref{fig:if2} par abus ou par faignantise. La syntaxe \ref{fig:if3} s'explique par le gain de ligne, gain d'autant plus important au temps des editeurs en lignes tels que ed.
+
+\begin{figure}
+\begin{framed}
+\begin{verbatim}
+1:  if <condition> 
+2:      {
+3:      <conditionnal statement1>
+4:      ...
+5:      }
+6:  else 
+7:      {
+8:      <conditionnal statement1>
+9:      ...
+10:     }
+\end{verbatim}
+\end{framed}
+\caption{Les accolades font partie du statement (respect de la sémantique du C) et sont donc indentés}
+\label{fig:if1}
+\end{figure}
+
+\begin{figure}
+\begin{framed}
+\begin{verbatim}
+1:  if <condition> 
+2:  {
+3:      <conditionnal statement1>
+4:      ...
+5:  }
+6:  else 
+7:  {
+8:     <conditionnal statement1>
+9:      ...
+10: }
+\end{verbatim}
+\end{framed}
+\caption{Les accolades ne font pas partie du statement (différent de la sémantique du C) et ne sont donc pas indentés}
+\label{fig:if2}
+\end{figure}
+
+\begin{figure}
+\begin{framed}
+\begin{verbatim}
+1: if <condition> {
+2:     <conditionnal statement1>
+3:     ...
+4: } else {
+5:    <conditionnal statement1>
+6:     ...
+7: }
+\end{verbatim}
+\end{framed}
+\caption{Les accolades sont rajoutées en début et fin de lignes des lignes entourant les statements conditionnels.}
+\label{fig:if3}
+\end{figure}
+
+\section{\emph{if...else} imbriqués}
+Une structure \emph{if...else} est un statement en soit. De fait, en accordant l'indentation des accolades à la sémantique du langage lors de structures imbriquées, on devrait avoir une indentation semblable à celle en Figure~\ref{fig:if4}. Force est de constater que cette indentation n'est que trop rarement utilisée, au profit d'autres faisant fi du lien qu'il y a entre l'indentation et la sémantique du langage (voir Figure~\ref{fig:if5}).
+
+\begin{figure}
+\begin{framed}
+\begin{verbatim}
+1:  if <condition> 
+2:      <conditionnal statement1>
+3:  else 
+4:      if <condition> 
+5:          <conditionnal statement2>
+6:      else 
+7:          <conditionnal statement3>
+\end{verbatim}
+\end{framed}
+\caption{Indentation correcte de structures if...else imbriquées.}
+\label{fig:if4}
+\end{figure}
+
+\begin{figure}
+\begin{framed}
+\begin{verbatim}
+1:  if <condition> 
+2:      <conditionnal statement1>
+3:  else if <condition> 
+4:      <conditionnal statement2>
+5:  else 
+6:      <conditionnal statement3>
+\end{verbatim}
+\end{framed}
+\caption{Indentation incorrecte de structures if...else imbriquées.}
+\label{fig:if5}
+\end{figure}
+
+\end{document}
